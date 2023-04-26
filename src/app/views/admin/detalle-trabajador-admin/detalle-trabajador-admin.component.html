@@ -1,1 +1,115 @@
-<p>detalle-trabajador-admin works!</p>
+<br><br>
+<button style="--clr:#2C3786" (click)="listarinicidencias(trabajador.id)"><span>Lista Incidencias</span><i></i></button> &nbsp;
+&nbsp;&nbsp;
+<button style="--clr:#2C3786" (click)="validadoPDF()" *ngIf="trabajador?.estatus == 'Pendiente de Renuncia'" ><span>PDF Renuncia</span><i></i></button> &nbsp;
+&nbsp;&nbsp;
+<button style="--clr:#2C3786" (click)="open(actualizarRenuncia)"  *ngIf="trabajador?.estatus == 'Pendiente de Renuncia'"><span>Actualizar Renuncia</span><i></i></button> &nbsp;
+<div class="card-container">
+  <h1 class="fuente_h1">Detalles del Administrador</h1>
+  <p class="hero-image-container">
+    <img class="hero-image" src="/assets/usuarios.jpg" alt="Aqui deberia estar la imagen del Surtidor" />
+  </p>
+  <main class="main-content">
+    <div class="flex-row">
+      <div class="coin-base fontImg">
+        <img src="/assets/nombre.png" alt="Ethereum" class="small-image" />{{trabajador?.nombre_trabajador}}
+      </div>
+      <div class="coin-base fontImg">
+        <img src="/assets/contrasena.png" alt="Ethereum" class="small-image fontImg" />{{trabajador?.numero_trabajador}}
+      </div>
+    </div>
+    <div class="flex-row">
+      <div class="coin-base fontImg">
+        <img src="/assets/signo-de-dolar.png" alt="Ethereum" class="small-image fontImg" />{{trabajador?.sueldo | currency}}
+      </div>&nbsp;&nbsp;&nbsp;
+      <div class="coin-base fontImg">
+        <img src="/assets/grafico.png" alt="Ethereum" class="small-image fontImg" />{{trabajador?.estatus}}
+      </div>
+    </div>
+    <div class="flex-row">
+      <div class="coin-base fontImg">
+        <img src="/assets/llamada.png" alt="Ethereum" class="small-image fontImg" />{{trabajador?.celular}}
+      </div>&nbsp;&nbsp;&nbsp;
+      <div class="coin-base fontImg">
+        <img src="/assets/correo-electronico.png" alt="Ethereum"
+          class="small-image fontImg" />{{trabajador?.correo_electronico}}
+      </div>
+    </div>
+    <div class="coin-base fontImg">
+      <img src="/assets/puesto-de-trabajo.png" alt="Ethereum" class="small-image fontImg" />{{trabajador?.puesto}}
+    </div>
+  </main>
+  <div class="buttons">
+    <button (click)="openEditarGerente(editarGerente)">Editar</button>
+    <button (click)="eliminarGerente(trabajador?.id)">Eliminar</button>
+    <button [routerLink]="'/admin/trabajadores'">Regresar</button>
+  </div>
+</div>
+<!--Ventana Modal Buscar Orden-->
+<ng-template #editarGerente let-modal>
+  <div class="modal-header fondo-cabecera">
+    <h4 class="modal-title estiloh4">Editar Trabajador</h4>
+    <button class="btn close btnClose" aria-label="close" type="button" (click)="modal.dismiss()">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body fondo-modal-buscar">
+    <div class="col form_modal">
+      <label for="ejemplo">Nombre</label>
+      <input type="text" [(ngModel)]="trabajador.nombre_trabajador" class="form-control" name="nombreSurtidor"><br>
+      <label for="ejemplo">Numero</label>
+      <input type="text" [(ngModel)]="trabajador.numero_trabajador" class="form-control" name="claveSurtidor">
+      <label for="ejemplo">Apellido Paterno</label>
+      <input type="text" [(ngModel)]="trabajador.apellidoP_trabajador" class="form-control" name="claveSurtidor">
+      <label for="ejemplo">Apellido Materno</label>
+      <input type="text" [(ngModel)]="trabajador.apellidoM_trabajador" class="form-control" name="claveSurtidor">
+      <label for="ejemplo">NSS</label>
+      <input type="text" [(ngModel)]="trabajador.nss" class="form-control" name="claveSurtidor">
+      <label for="ejemplo">RFC</label>
+      <input type="text" [(ngModel)]="trabajador.rfc" class="form-control" name="claveSurtidor">
+      <label for="ejemplo">CURP</label>
+      <input type="text" [(ngModel)]="trabajador.curp" class="form-control" name="claveSurtidor">
+      <label for="ejemplo">Sueldo</label>
+      <input type="text" [(ngModel)]="trabajador.sueldo" class="form-control" name="claveSurtidor">
+      <label for="ejemplo">eststaus</label>
+      <input type="text" [(ngModel)]="trabajador.estatus" class="form-control" name="claveSurtidor">
+      <label for="ejemplo">Celular</label>
+      <input type="text" [(ngModel)]="trabajador.celular" class="form-control" name="claveSurtidor">
+      <label for="ejemplo">Correo</label>
+      <input type="text" [(ngModel)]="trabajador.correo_electronico" class="form-control" name="claveSurtidor">
+      <label for="ejemplo">Puesto</label>
+      <input type="text" [(ngModel)]="trabajador.puesto" class="form-control" name="claveSurtidor">
+    </div>
+  </div>
+  <div class="modal-footer">
+    <a type="submit" class="btnBuscar" (click)="editarGerenteClick()">Crear</a>
+  </div>
+</ng-template>
+
+<!--Ventana Modal Buscar Orden-->
+<ng-template #actualizarRenuncia let-modal>
+  <div class="modal-header fondo-cabecera">
+    <h4 class="modal-title estiloh4">Editar Trabajador</h4>
+    <button class="btn close btnClose" aria-label="close" type="button" (click)="modal.dismiss()">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body fondo-modal-buscar">
+    <div class="col form_modal">
+      <a class="btnBuscar" (click)="aceptar(renuncia.id_renuncia)">Aceptar</a>
+      &nbsp;
+      <a class="btnBuscar" (click)="no_aceptar()" >No aceptar</a>
+      <div *ngIf="validacion">
+        <label for="ejemplo">Finiquito</label>
+        <input type="text" [(ngModel)]="renuncia.finiquito" class="form-control" name="nombreSurtidor"><br>
+        <label for="ejemplo">Estatus</label>
+        <input type="text" [(ngModel)]="renuncia.estatusRenuncia" class="form-control" name="claveSurtidor">
+      </div>
+
+    </div>
+  </div>
+  <div class="modal-footer">
+    <a type="submit" class="btnBuscar" (click)="editarRenunciaClick()">Crear</a>
+  </div>
+</ng-template>
+

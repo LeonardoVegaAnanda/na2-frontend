@@ -1,1 +1,16 @@
-<p>detalle-retardo-admin works!</p>
+<div class="container">
+  <div class="row">
+    <div class="col-md-6">
+      <h1 class="fuente_h1">Retardo</h1>
+      <div id="tv">
+        <h4><b>Fecha:</b> &nbsp; <span>{{retardo?.fecha_retardo | date}}</span></h4>
+        <h4><b>Tiempo:</b> &nbsp; <span>{{retardo?.tiempo_Retardo}}</span></h4>
+        <h4><b>Descuento:</b> Descuento: <span>{{retardo?.descuento_retardo  | currency}}</span></h4>
+        <h4><b>Trabajador: </b>&nbsp; <span>{{retardo?.descuento_retardo}}</span></h4>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="buttons">
+  <button class="btnRegresar" [routerLink]="'/admin/retardos'">Regresar</button>
+</div>

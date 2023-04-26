@@ -1,1 +1,78 @@
-<p>listar-nominas-admin works!</p>
+<!--Encabezado principal-->
+<section class="intro">
+  <div class="bg-image h-100" style="background-color: transparent;">
+    <div class="mask d-flex align-items-center h-100">
+      <div class="container">
+        <br><br>
+        <!--Titulo-->
+        <h2 style="color: #000;">
+          Lista de Nominas
+        </h2>
+        <br>
+        <br>
+        <mat-form-field class="dateEscoger">
+          <input matInput [matDatepicker]="picker" placeholder="Escoge la fecha a buscar" [(ngModel)]="fecha">
+          <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+          <mat-datepicker style="color: blueviolet;" #picker></mat-datepicker>
+        </mat-form-field>
+        &nbsp; &nbsp;
+        <button style="--clr:#634A97" (click)="obtenerNominaDate()"><span>Obtener Lista</span><i></i></button>
+        &nbsp; &nbsp;
+        <button style="--clr:#634A97" (click)="generarPDFDate()" *ngIf="validado"><span>PDF</span><i></i></button>
+        &nbsp; &nbsp;
+        <button style="--clr:#946FE3" (click)=" abrirModalEvento(crearEvento)"><span>Crear Nomina</span><i></i></button>
+        <br><br>
+      </div>
+    </div>
+  </div>
+</section>
+<ng-template #sinEstatus>
+  Sin Estatus
+</ng-template>
+<div class="table-wrapper">
+  <table class="fl-table">
+    <thead>
+      <tr>
+        <th scope="col">#</th>
+        <th scope="col">Fecha</th>
+        <th scope="col">Nomina</th>
+        <th scope="col">ISR</th>
+        <th scope="col">Trabajador</th>
+        <th scope="col">Numero Trabajador</th>
+        <th scope="col">Accion</th>
+      </tr>
+    </thead>
+    <tbody class="row_cuerpo" *ngFor="let nomina of listaNominas">
+      <tr class="tr_font">
+        <td>{{nomina.id_nomina}}</td>
+        <td>{{nomina.fechaNomina}}</td>
+        <td>{{nomina.nomina_trabajador | currency}}</td>
+        <td>{{nomina.isr | percent}}</td>
+        <td>{{nomina.trabajadorModel.nombre_trabajador}}</td>
+        <td>{{nomina.trabajadorModel.numero_trabajador}}</td>
+        <td style="color: #000;"><a class="btn btnPrimary" (click)="detalleNomina(nomina.trabajadorModel.id, nomina.id_nomina)">Detalles</a></td>
+      </tr>
+    <tbody>
+  </table>
+</div>
+<!--Ventana Modal Buscar Orden-->
+<ng-template #crearEvento let-modal>
+  <div class="modal-header fondo-cabecera">
+    <h4 class="modal-title estiloh4">Crear Evento</h4>
+    <button class="btn close btnClose" aria-label="close" type="button" (click)="modal.dismiss()">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body fondo-modal-buscar">
+    <div class="col form_modal">
+      <p>Trabajador</p>
+      <select [(ngModel)]="idTrabajador" name="gerente" *ngFor="let trabajador of trabajadores" id="gerente.id">
+        <option value="{{trabajador.id}}">{{trabajador.nombre_trabajador}}</option>
+      </select>
+    </div>
+    <a type="submit" class="btnBuscar" (click)="crearEventoClick()">Crear</a>
+  </div>
+  <div class="modal-footer">
+  </div>
+</ng-template>
+<!--Cerrar Ventana Modal Buscar Orden-->

@@ -1,1 +1,75 @@
-<p>detalle-gerente-admin works!</p>
+<div class="card-container">
+  <h1 class="fuente_h1">Detalles del Administrador</h1>
+  <p class="hero-image-container">
+    <img class="hero-image" src="/assets/usuarios.jpg" alt="Aqui deberia estar la imagen del Surtidor" />
+  </p>
+  <main class="main-content">
+    <div class="flex-row">
+      <div class="coin-base fontImg">
+        <img src="/assets/nombre.png" alt="Ethereum" class="small-image" />{{gerente?.nombre_gerente}}
+      </div>
+      <div class="coin-base fontImg">
+        <img src="/assets/contrasena.png" alt="Ethereum" class="small-image fontImg" />{{gerente?.numero_gerente}}
+      </div>
+    </div>
+    <div class="flex-row">
+      <div class="coin-base fontImg">
+        <img src="/assets/signo-de-dolar.png" alt="Ethereum" class="small-image fontImg" />{{gerente?.sueldo |currency}}
+      </div>
+      <div class="coin-base fontImg">
+        <img src="/assets/grafico.png" alt="Ethereum" class="small-image fontImg" />{{gerente?.estatus}}
+      </div>
+    </div>
+    <div class="flex-row">
+      <div class="coin-base fontImg">
+        <img src="/assets/llamada.png" alt="Ethereum" class="small-image fontImg" />{{gerente?.celular}}
+      </div>
+      <div class="coin-base fontImg">
+        <img src="/assets/correo-electronico.png" alt="Ethereum" class="small-image fontImg" />{{gerente?.correo_electronico}}
+      </div>
+    </div>
+    <div class="coin-base fontImg">
+      <img src="/assets/puesto-de-trabajo.png" alt="Ethereum" class="small-image fontImg" />{{gerente?.puesto}}
+    </div>
+
+  </main>
+  <div class="buttons">
+    <button (click)="openEditarGerente(editarGerente)">Editar</button>
+    <button (click)="eliminarGerente(gerente?.id)">Eliminar</button>
+    <button [routerLink]="'/admin/gerentes'">Regresar</button>
+  </div>
+</div>
+<!--Ventana Modal Buscar Orden-->
+<ng-template #editarGerente let-modal>
+  <div class="modal-header fondo-cabecera">
+    <h4 class="modal-title estiloh4">Crear Administrador</h4>
+    <button class="btn close btnClose" aria-label="close" type="button" (click)="modal.dismiss()">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body fondo-modal-buscar">
+    <div class="col form_modal">
+      <label for="ejemplo">Nombre</label>
+      <input type="text" [(ngModel)]="gerente.nombre_gerente" class="form-control" name="nombreSurtidor"><br>
+      <label for="ejemplo">Numero</label>
+      <input type="text" [(ngModel)]="gerente.numero_gerente" class="form-control" name="claveSurtidor">
+      <label for="ejemplo">Apellido Paterno</label>
+      <input type="text" [(ngModel)]="gerente.apellidoP_gerente" class="form-control" name="claveSurtidor">
+      <label for="ejemplo">Apellido Materno</label>
+      <input type="text" [(ngModel)]="gerente.apllidoM_gerente" class="form-control" name="claveSurtidor">
+      <label for="ejemplo">Sueldo</label>
+      <input type="text" [(ngModel)]="gerente.sueldo" class="form-control" name="claveSurtidor">
+      <label for="ejemplo">eststus</label>
+      <input type="text" [(ngModel)]="gerente.estaus" class="form-control" name="claveSurtidor">
+      <label for="ejemplo">Celular</label>
+      <input type="text" [(ngModel)]="gerente.celular" class="form-control" name="claveSurtidor">
+      <label for="ejemplo">Correo</label>
+      <input type="text" [(ngModel)]="gerente.correo_electronico" class="form-control" name="claveSurtidor">
+      <label for="ejemplo">Puesto</label>
+      <input type="text" [(ngModel)]="gerente.puesto" class="form-control" name="claveSurtidor">
+    </div>
+  </div>
+  <div class="modal-footer">
+    <a type="submit" class="btnBuscar" (click)="editarGerenteClick()">Crear</a>
+  </div>
+</ng-template>

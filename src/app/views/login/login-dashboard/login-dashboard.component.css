@@ -55,7 +55,7 @@ form{
 }
 form *{
     font-family: 'Poppins',sans-serif;
-    color: #ffffff;
+    color: #000;
     letter-spacing: 0.5px;
     outline: none;
     border: none;

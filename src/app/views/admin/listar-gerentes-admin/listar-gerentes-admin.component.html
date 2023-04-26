@@ -1,1 +1,71 @@
-<p>listar-gerentes-admin works!</p>
+<!--Ventana Modal Buscar Orden-->
+<ng-template #crearGerente let-modal>
+    <div class="modal-header fondo-cabecera">
+      <h4 class="modal-title estiloh4">Crear Administrador</h4>
+      <button class="btn close btnClose" aria-label="close" type="button" (click)="modal.dismiss()">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+    <div class="modal-body fondo-modal-buscar">
+      <div class="col form_modal">
+        <input type="text" [(ngModel)]="gerente.nombre_gerente" class="form-control" name="nombreSurtidor" placeholder="Nombre">
+        <input type="text" [(ngModel)]="gerente.numero_gerente" class="form-control" name="claveSurtidor" placeholder="Numero Gerente">
+        <input type="text" [(ngModel)]="gerente.apellidoP_gerente" class="form-control" name="claveSurtidor" placeholder="Apellido Paterno">
+        <input type="text" [(ngModel)]="gerente.apelliodM_gerente" class="form-control" name="claveSurtidor" placeholder="Apellido Materno">
+        <input type="number" [(ngModel)]="gerente.sueldo" class="form-control" name="claveSurtidor" placeholder="Sueldo">
+        <input type="text" [(ngModel)]="gerente.estatus" class="form-control" name="claveSurtidor" placeholder="Estatus">
+        <input type="tel" [(ngModel)]="gerente.celular" class="form-control" name="claveSurtidor" placeholder="Telefono">
+        <input type="email" [(ngModel)]="gerente.correo_electronico" class="form-control" name="claveSurtidor" placeholder="Correo Electronico">
+        <input type="text" [(ngModel)]="gerente.puesto" class="form-control" name="claveSurtidor" placeholder="Puesto">
+      </div>
+    </div>
+    <div class="modal-footer">
+      <a type="submit" class="btnBuscar" (click)="crearGerenteClick()" >Crear</a>
+    </div>
+</ng-template>
+<!--Cerrar Ventana Modal Buscar Orden-->
+
+<!--Encabezado principal-->
+<section class="intro">
+  <div class="bg-image h-100" style="background-color: transparent;">
+    <div class="mask d-flex align-items-center h-100">
+      <div class="container">
+        <br><br>
+        <!--Titulo-->
+        <h2 style="color: #000;">
+          Lista de Gerentes
+        </h2>
+        <br>
+        <br>
+        <button style="--clr:#2C3786" (click)="openCrearGerente(crearGerente)"><span>Crear
+           Gerente</span><i></i></button> &nbsp;
+      </div>
+    </div>
+  </div>
+</section>
+<div class="table-wrapper">
+  <table class="fl-table">
+    <thead>
+      <tr>
+        <th scope="col">#</th>
+        <th scope="col">Nombre</th>
+        <th scope="col">Estatus</th>
+        <th scope="col">Correo</th>
+        <th scope="col">Celular</th>
+        <th scope="col">Puesto</th> 
+        <th scope="col">Accion</th>
+      </tr>
+    </thead>
+    <tbody style="background-color: transparent;">
+      <tr *ngFor="let gerente of gerentes">
+        <td>{{gerente.numero_gerente}}</td>
+        <td>{{gerente.nombre_gerente}}</td>
+        <td>{{gerente.estatus}}</td>
+        <td>{{gerente.correo_electronico}}</td>
+        <td>{{gerente.celular}}</td>
+        <td>{{gerente.puesto}}</td>
+        <td><a class="btn" [routerLink]="'/admin/gerentes/'+gerente.id">Detalles</a></td>
+      </tr>
+    </tbody>
+  </table>
+</div>

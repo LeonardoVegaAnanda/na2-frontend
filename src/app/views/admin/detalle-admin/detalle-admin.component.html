@@ -1,0 +1,46 @@
+<div class="card-container">
+    <h1 class="fuente_h1">Detalles del Administrador</h1>
+    <p class="hero-image-container">
+      <img class="hero-image" src="/assets/usuarios.jpg" alt="Aqui deberia estar la imagen del Surtidor" />
+    </p>
+    <main class="main-content">
+      <div class="flex-row">
+        <div class="coin-base fontImg">
+          <img src="/assets/nombre.png" alt="Ethereum" class="small-image"/>{{administrador?.nombre}}
+          </div>
+        <div class="coin-base fontImg">
+          <img src="/assets/contrasena.png" alt="Ethereum" class="small-image fontImg"/>{{administrador?.usuario}}
+          </div>
+      </div>
+    </main>
+    <div class="buttons">
+      <button (click)="openEditarAdministrador(editarSurtidor)">Editar</button>
+      <button (click)="eliminarAdministrador(administrador?.id_administrador)">Eliminar</button>
+      <button [routerLink]="'/admin/admins'">Regresar</button>
+    </div>
+  </div>
+  <!--Ventana Modal Buscar Orden-->
+  <ng-template #editarSurtidor let-modal>
+    <form (ngSubmit)="editarAdministradorClick()">
+      <div class="modal-header fondo-cabecera">
+        <h4 class="modal-title estiloh4">Buscar Orden</h4>
+        <button class="btn close btnClose" aria-label="close" type="button" (click)="modal.dismiss()">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body fondo-modal-buscar form_modal">
+        <div class="col">
+          <label for="ejemplo">Nombre Surtidor</label>
+          <input type="text" [(ngModel)]="administrador.nombre" class="form-control" name="nombreSurtidor" placeholder="Nombre">
+          <input type="hidden" [(ngModel)]="administrador.id_administrador" class="form-control" name="idSurtidor"><br>
+          <input type="text" [(ngModel)]="administrador.usuario" class="form-control" name="claveSurtidor" placeholder="Clave">
+          <label for="ejemplo">Usuario</label>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="submit" class="btnBuscar">Crear</button>
+      </div>
+    </form>
+  </ng-template>
+  <!--Cerrar Ventana Modal Buscar Orden-->
+  

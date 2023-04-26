@@ -10,8 +10,6 @@ import { ListarGerentesAdminComponent } from './views/admin/listar-gerentes-admi
 import { ListarTrabajadoresAdminComponent } from './views/admin/listar-trabajadores-admin/listar-trabajadores-admin.component';
 import { ListarNominasAdminComponent } from './views/admin/listar-nominas-admin/listar-nominas-admin.component';
 import { ListarVacacionesAdminComponent } from './views/admin/listar-vacaciones-admin/listar-vacaciones-admin.component';
-import { ListarRenunciasAdminComponent } from './views/admin/listar-renuncias-admin/listar-renuncias-admin.component';
-import { ListarIncidenciasAdminComponent } from './views/admin/listar-incidencias-admin/listar-incidencias-admin.component';
 import { ListarRetardosAdminComponent } from './views/admin/listar-retardos-admin/listar-retardos-admin.component';
 import { ListarTareasAdminComponent } from './views/admin/listar-tareas-admin/listar-tareas-admin.component';
 import { ListarUsuariosAdminComponent } from './views/admin/listar-usuarios-admin/listar-usuarios-admin.component';
@@ -19,7 +17,6 @@ import { ListarEventosAdminComponent } from './views/admin/listar-eventos-admin/
 import { ListarHorasextrasAdminComponent } from './views/admin/listar-horasextras-admin/listar-horasextras-admin.component';
 import { DetalleEventoAdminComponent } from './views/admin/detalle-evento-admin/detalle-evento-admin.component';
 import { DetalleGerenteAdminComponent } from './views/admin/detalle-gerente-admin/detalle-gerente-admin.component';
-import { DetalleHoraextraAdminComponent } from './views/admin/detalle-horaextra-admin/detalle-horaextra-admin.component';
 import { DetalleIncidenciaAdminComponent } from './views/admin/detalle-incidencia-admin/detalle-incidencia-admin.component';
 import { DetalleNominaAdminComponent } from './views/admin/detalle-nomina-admin/detalle-nomina-admin.component';
 import { DetalleRenunciaAdminComponent } from './views/admin/detalle-renuncia-admin/detalle-renuncia-admin.component';
@@ -65,6 +62,25 @@ import { SolicitudIncidenciaWorkerComponent } from './views/worker/solicitud-inc
 import { ForbiddenComponent } from './views/forbidden/forbidden.component';
 import { NotFountComponent } from './views/not-fount/not-fount.component';
 
+import { HttpClientModule } from '@angular/common/http';
+import {FormsModule} from '@angular/forms';
+import { authInterceptorProviders } from './services/util/auth.interceptor';
+import { ListarAdminsAdminComponent } from './views/admin/listar-admins-admin/listar-admins-admin.component';
+import { ListarQuejasAdminComponent } from './views/admin/listar-quejas-admin/listar-quejas-admin.component';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { DetalleAdminComponent } from './views/admin/detalle-admin/detalle-admin.component';
+import { DatePipe } from '@angular/common';
+import { DetalleQuejaAdminComponent } from './views/admin/detalle-queja-admin/detalle-queja-admin.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+
+import { MatDatepickerModule } from '@angular/material/datepicker';
+import { MatNativeDateModule } from '@angular/material/core';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatInputModule } from '@angular/material/input';
+import { ListarIncidenciasComponent } from './views/admin/listar-incidencias/listar-incidencias.component';
+
+
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -75,8 +91,6 @@ import { NotFountComponent } from './views/not-fount/not-fount.component';
     ListarTrabajadoresAdminComponent,
     ListarNominasAdminComponent,
     ListarVacacionesAdminComponent,
-    ListarRenunciasAdminComponent,
-    ListarIncidenciasAdminComponent,
     ListarRetardosAdminComponent,
     ListarTareasAdminComponent,
     ListarUsuariosAdminComponent,
@@ -84,7 +98,6 @@ import { NotFountComponent } from './views/not-fount/not-fount.component';
     ListarHorasextrasAdminComponent,
     DetalleEventoAdminComponent,
     DetalleGerenteAdminComponent,
-    DetalleHoraextraAdminComponent,
     DetalleIncidenciaAdminComponent,
     DetalleNominaAdminComponent,
     DetalleRenunciaAdminComponent,
@@ -128,13 +141,28 @@ import { NotFountComponent } from './views/not-fount/not-fount.component';
     SoliciutdVacacionesWorkerComponent,
     SolicitudIncidenciaWorkerComponent,
     ForbiddenComponent,
-    NotFountComponent
+    NotFountComponent,
+    ListarAdminsAdminComponent,
+    ListarQuejasAdminComponent,
+    DetalleAdminComponent,
+    DetalleQuejaAdminComponent,
+    ListarIncidenciasComponent
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    HttpClientModule,
+    FormsModule,
+    NgbModule,
+    BrowserAnimationsModule,
+    MatDatepickerModule,
+    MatNativeDateModule,
+    MatFormFieldModule,
+    MatInputModule,
   ],
-  providers: [],
+  providers: [authInterceptorProviders,
+  DatePipe],
+  
   bootstrap: [AppComponent]
 })
 export class AppModule { }
