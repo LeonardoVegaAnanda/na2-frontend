@@ -2,6 +2,7 @@ import { DatePipe } from '@angular/common';
 import { Component } from '@angular/core';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { ApiNa2Service } from 'src/app/services/api/api-na2.service';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-listar-retardos-admin',
@@ -41,7 +42,7 @@ export class ListarRetardosAdminComponent {
       }
     );
   }
-  abrirModalEvento(crearEvento) {
+  abrirModalRetardo(crearEvento) {
     this.apiService.listarTrabajadores().subscribe(
       (data: any) => {
         this.trabajadores = data.contenido;
@@ -51,18 +52,34 @@ export class ListarRetardosAdminComponent {
     this.modal.open(crearEvento);
   }
 
-  crearEventoClick() {
-    let latest_date = this.datepipe.transform(this.retardo.fechaRetardo, 'yyyy-MM-dd');
-    this.retardo.fechaRetardo = latest_date;
-    this.apiService.crearRetardo(this.idTrabajador,this.retardo).subscribe(
-      (data) => {
-        this.modal.dismissAll();
-        console.log(data)
-        this.ngOnInit();
-      },
-      (error) => {
-        console.log(error);
-      }
-    );
+  crearRetardoClick() {
+    Swal.fire({
+      icon: 'question',
+      title: "Crear Retardo",
+      text: "¿Desea crear un retardo?",
+      showCancelButton: true,
+      confirmButtonColor: '#3CC3C8',
+      cancelButtonColor: '#d33',
+      confirmButtonText: 'Crear',
+      cancelButtonText: 'Cancelar'
+    }).then(
+      (e) => {
+        if (e.isConfirmed) {
+          let latest_date = this.datepipe.transform(this.retardo.fechaRetardo, 'yyyy-MM-dd');
+          this.retardo.fechaRetardo = latest_date;
+          this.apiService.crearRetardo(this.idTrabajador, this.retardo).subscribe(
+            (data) => {
+              this.modal.dismissAll();
+              console.log(data);
+              Swal.fire("Exito","Exito al crear un retardo","success");
+              this.ngOnInit();
+            },
+            (error) => {
+              console.log(error);
+              Swal.fire("Erro","Error al crear un retardo","success");
+            }
+          );
+        }
+      });
   }
 }

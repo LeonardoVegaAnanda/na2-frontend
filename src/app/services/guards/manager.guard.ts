@@ -1,15 +1,21 @@
 import { Injectable } from '@angular/core';
-import { ActivatedRouteSnapshot, CanActivate, RouterStateSnapshot, UrlTree } from '@angular/router';
+import { ActivatedRouteSnapshot, CanActivate, Router, RouterStateSnapshot, UrlTree } from '@angular/router';
 import { Observable } from 'rxjs';
+import { LoginNa2Service } from '../login/login-na2.service';
 
 @Injectable({
   providedIn: 'root'
 })
 export class ManagerGuard implements CanActivate {
+  constructor(private login:LoginNa2Service,private router:Router){}
   canActivate(
     route: ActivatedRouteSnapshot,
     state: RouterStateSnapshot): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {
-    return true;
+      if(this.login.isLoggedIn() && this.login.getUserRoles() == 'ROLE_GERENTE'){
+        return true;
+      }
+      this.router.navigate(['/forbidden'])
+      return false;
   }
   
 }

@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { ApiNa2Service } from 'src/app/services/api/api-na2.service';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-detalle-gerente-admin',
@@ -26,14 +27,30 @@ export class DetalleGerenteAdminComponent {
     );
   }
   editarGerenteClick() {
-    this.apiService.actualizarGerente(this.gerente).subscribe(
-      (data) => {
-        console.log(data);
-        this.modal.dismissAll();
-      },
-      (error) => {
-      }
-    );
+    Swal.fire({
+      icon: 'question',
+      title: "Editar Gerente",
+      text: "¿Desea editar al gerente?",
+      showCancelButton: true,
+      confirmButtonColor: '#3CC3C8',
+      cancelButtonColor: '#d33',
+      confirmButtonText: 'Editar',
+      cancelButtonText: 'Cancelar'
+    }).then(
+      (e) => {
+        if (e.isConfirmed) {
+          this.apiService.actualizarGerente(this.gerente).subscribe(
+            (data) => {
+              Swal.fire("Exito", "Exito al editar el gerente", "success");
+              console.log(data);
+              this.modal.dismissAll();
+            },
+            (error) => {
+              Swal.fire("Error", "Error al editar el gerente", "error");
+            }
+          );
+        }
+      });
   }
 
   openEditarGerente(editarAdmin: any) {
@@ -41,14 +58,29 @@ export class DetalleGerenteAdminComponent {
   }
 
   eliminarGerente(idSurtidor: any) {
-    this.apiService.eliminarGerente(idSurtidor).subscribe(
-      (data) => {
-
-        this.router.navigate(['/admin/gerente']);
-      },
-      (error) => {
-        console.log(error);
-      }
-    );
+    Swal.fire({
+      icon: 'question',
+      title: "Eliminar Gerente",
+      text: "¿Desea eliminar al gerente?",
+      showCancelButton: true,
+      confirmButtonColor: '#3CC3C8',
+      cancelButtonColor: '#d33',
+      confirmButtonText: 'Eliminar',
+      cancelButtonText: 'Cancelar'
+    }).then(
+      (e) => {
+        if (e.isConfirmed) {
+          this.apiService.eliminarGerente(idSurtidor).subscribe(
+            (data) => {
+              Swal.fire("Exito","Exito al eliminar el gerente","success");
+              this.router.navigate(['/admin/gerente']);
+            },
+            (error) => {
+              Swal.fire("Error", "Error al eliminar el gerente","error");
+              console.log(error);
+            }
+          );
+        }
+      });
   }
 }

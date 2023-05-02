@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { ApiNa2Service } from 'src/app/services/api/api-na2.service';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-detalle-tarea-admin',
@@ -10,30 +11,45 @@ import { ApiNa2Service } from 'src/app/services/api/api-na2.service';
 })
 export class DetalleTareaAdminComponent {
   id = 0;
-  tarea?:any;
+  tarea?: any;
 
-  constructor(private router: Router, private route: ActivatedRoute, private apiService: ApiNa2Service,private modal:NgbModal) { }
+  constructor(private router: Router, private route: ActivatedRoute, private apiService: ApiNa2Service, private modal: NgbModal) { }
 
   ngOnInit(): void {
-    this.id= this.route.snapshot.params['id'];
+    this.id = this.route.snapshot.params['id'];
     this.apiService.obtenerTareaById(this.id).subscribe(
-      (data) =>{
+      (data) => {
         this.tarea = data;
       },
-      (error)=>{
+      (error) => {
         console.log(error);
-      } 
+      }
     );
   }
   editarEventoClick() {
-
-    this.apiService.actualizarTarea(this.tarea,this.tarea.trabajadorModel.id).subscribe(
-      (data) => {
-        this.modal.dismissAll();
-      },
-      (error) => {
-      }
-    );
+    Swal.fire({
+      icon: 'question',
+      title: "Editar Tarea",
+      text: "¿Desea editar la tarea?",
+      showCancelButton: true,
+      confirmButtonColor: '#3CC3C8',
+      cancelButtonColor: '#d33',
+      confirmButtonText: 'Crear',
+      cancelButtonText: 'Cancelar'
+    }).then(
+      (e) => {
+        if (e.isConfirmed) {
+          this.apiService.actualizarTarea(this.tarea, this.tarea.trabajadorModel.id).subscribe(
+            (data) => {
+              Swal.fire("Exito","Exito al editar","success");
+              this.modal.dismissAll();
+            },
+            (error) => {
+              Swal.fire("Error","Error al editar","error");
+            }
+          );
+        }
+      });
 
   }
 

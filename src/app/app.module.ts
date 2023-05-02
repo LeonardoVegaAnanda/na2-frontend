@@ -17,13 +17,10 @@ import { ListarEventosAdminComponent } from './views/admin/listar-eventos-admin/
 import { ListarHorasextrasAdminComponent } from './views/admin/listar-horasextras-admin/listar-horasextras-admin.component';
 import { DetalleEventoAdminComponent } from './views/admin/detalle-evento-admin/detalle-evento-admin.component';
 import { DetalleGerenteAdminComponent } from './views/admin/detalle-gerente-admin/detalle-gerente-admin.component';
-import { DetalleIncidenciaAdminComponent } from './views/admin/detalle-incidencia-admin/detalle-incidencia-admin.component';
 import { DetalleNominaAdminComponent } from './views/admin/detalle-nomina-admin/detalle-nomina-admin.component';
-import { DetalleRenunciaAdminComponent } from './views/admin/detalle-renuncia-admin/detalle-renuncia-admin.component';
 import { DetalleRetardoAdminComponent } from './views/admin/detalle-retardo-admin/detalle-retardo-admin.component';
 import { DetalleTareaAdminComponent } from './views/admin/detalle-tarea-admin/detalle-tarea-admin.component';
 import { DetalleTrabajadorAdminComponent } from './views/admin/detalle-trabajador-admin/detalle-trabajador-admin.component';
-import { DetalleUsuarioAdminComponent } from './views/admin/detalle-usuario-admin/detalle-usuario-admin.component';
 import { DetalleVacacionAdminComponent } from './views/admin/detalle-vacacion-admin/detalle-vacacion-admin.component';
 import { DashboardManagerComponent } from './views/manager/dashboard-manager/dashboard-manager.component';
 import { SidebarManagerComponent } from './views/manager/sidebar-manager/sidebar-manager.component';
@@ -31,16 +28,12 @@ import { ListarEventosComponent } from './views/manager/listar-eventos/listar-ev
 import { ListarHorasextraManagerComponent } from './views/manager/listar-horasextra-manager/listar-horasextra-manager.component';
 import { ListarIncidenciasManagerComponent } from './views/manager/listar-incidencias-manager/listar-incidencias-manager.component';
 import { ListarNominasManagerComponent } from './views/manager/listar-nominas-manager/listar-nominas-manager.component';
-import { ListarRenunciasManagerComponent } from './views/manager/listar-renuncias-manager/listar-renuncias-manager.component';
 import { ListarRetardosManagerComponent } from './views/manager/listar-retardos-manager/listar-retardos-manager.component';
 import { ListarTareasManagerComponent } from './views/manager/listar-tareas-manager/listar-tareas-manager.component';
 import { ListarVacacionesManagerComponent } from './views/manager/listar-vacaciones-manager/listar-vacaciones-manager.component';
 import { ListarTrabajadoresManagerComponent } from './views/manager/listar-trabajadores-manager/listar-trabajadores-manager.component';
 import { DetalleEventoManagerComponent } from './views/manager/detalle-evento-manager/detalle-evento-manager.component';
-import { DetalleHoraextraManagerComponent } from './views/manager/detalle-horaextra-manager/detalle-horaextra-manager.component';
-import { DetalleIncidenciaManagerComponent } from './views/manager/detalle-incidencia-manager/detalle-incidencia-manager.component';
 import { DetalleNominaManagerComponent } from './views/manager/detalle-nomina-manager/detalle-nomina-manager.component';
-import { DetalleRenunciaManagerComponent } from './views/manager/detalle-renuncia-manager/detalle-renuncia-manager.component';
 import { DetalleRetardoManagerComponent } from './views/manager/detalle-retardo-manager/detalle-retardo-manager.component';
 import { DetalleTareaManagerComponent } from './views/manager/detalle-tarea-manager/detalle-tarea-manager.component';
 import { DetalleTrabajadorManagerComponent } from './views/manager/detalle-trabajador-manager/detalle-trabajador-manager.component';
@@ -53,7 +46,6 @@ import { ListarNominasWorkerComponent } from './views/worker/listar-nominas-work
 import { ListarRetardosWorkerComponent } from './views/worker/listar-retardos-worker/listar-retardos-worker.component';
 import { ListarTareasWorkerComponent } from './views/worker/listar-tareas-worker/listar-tareas-worker.component';
 import { DetalleEventoWorkerComponent } from './views/worker/detalle-evento-worker/detalle-evento-worker.component';
-import { DetalleHoraextraWorkerComponent } from './views/worker/detalle-horaextra-worker/detalle-horaextra-worker.component';
 import { DetalleNominaWorkerComponent } from './views/worker/detalle-nomina-worker/detalle-nomina-worker.component';
 import { DetalleRetardoWorkerComponent } from './views/worker/detalle-retardo-worker/detalle-retardo-worker.component';
 import { DetalleTareaWorkerComponent } from './views/worker/detalle-tarea-worker/detalle-tarea-worker.component';
@@ -78,6 +70,12 @@ import { MatNativeDateModule } from '@angular/material/core';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { ListarIncidenciasComponent } from './views/admin/listar-incidencias/listar-incidencias.component';
+import { ListaQuejasManagerComponent } from './views/manager/lista-quejas-manager/lista-quejas-manager.component';
+import { DetallesQuejasManagerComponent } from './views/manager/detalles-quejas-manager/detalles-quejas-manager.component';
+import { ListarQuejasWorkerComponent } from './views/worker/listar-quejas-worker/listar-quejas-worker.component';
+import { DetalleQuejaWorkerComponent } from './views/worker/detalle-queja-worker/detalle-queja-worker.component';
+import { AdminGuard } from './services/guards/admin/admin.guard';
+import { OpcionNuclearComponent } from './views/worker/opcion-nuclear/opcion-nuclear.component';
 
 
 
@@ -98,13 +96,10 @@ import { ListarIncidenciasComponent } from './views/admin/listar-incidencias/lis
     ListarHorasextrasAdminComponent,
     DetalleEventoAdminComponent,
     DetalleGerenteAdminComponent,
-    DetalleIncidenciaAdminComponent,
     DetalleNominaAdminComponent,
-    DetalleRenunciaAdminComponent,
     DetalleRetardoAdminComponent,
     DetalleTareaAdminComponent,
     DetalleTrabajadorAdminComponent,
-    DetalleUsuarioAdminComponent,
     DetalleVacacionAdminComponent,
     DashboardManagerComponent,
     SidebarManagerComponent,
@@ -112,16 +107,12 @@ import { ListarIncidenciasComponent } from './views/admin/listar-incidencias/lis
     ListarHorasextraManagerComponent,
     ListarIncidenciasManagerComponent,
     ListarNominasManagerComponent,
-    ListarRenunciasManagerComponent,
     ListarRetardosManagerComponent,
     ListarTareasManagerComponent,
     ListarVacacionesManagerComponent,
     ListarTrabajadoresManagerComponent,
     DetalleEventoManagerComponent,
-    DetalleHoraextraManagerComponent,
-    DetalleIncidenciaManagerComponent,
     DetalleNominaManagerComponent,
-    DetalleRenunciaManagerComponent,
     DetalleRetardoManagerComponent,
     DetalleTareaManagerComponent,
     DetalleTrabajadorManagerComponent,
@@ -134,7 +125,6 @@ import { ListarIncidenciasComponent } from './views/admin/listar-incidencias/lis
     ListarRetardosWorkerComponent,
     ListarTareasWorkerComponent,
     DetalleEventoWorkerComponent,
-    DetalleHoraextraWorkerComponent,
     DetalleNominaWorkerComponent,
     DetalleRetardoWorkerComponent,
     DetalleTareaWorkerComponent,
@@ -146,7 +136,12 @@ import { ListarIncidenciasComponent } from './views/admin/listar-incidencias/lis
     ListarQuejasAdminComponent,
     DetalleAdminComponent,
     DetalleQuejaAdminComponent,
-    ListarIncidenciasComponent
+    ListarIncidenciasComponent,
+    ListaQuejasManagerComponent,
+    DetallesQuejasManagerComponent,
+    ListarQuejasWorkerComponent,
+    DetalleQuejaWorkerComponent,
+    OpcionNuclearComponent
   ],
   imports: [
     BrowserModule,

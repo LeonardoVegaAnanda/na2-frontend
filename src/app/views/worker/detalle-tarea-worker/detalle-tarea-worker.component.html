@@ -1,1 +1,17 @@
-<p>detalle-tarea-worker works!</p>
+<div class="container">
+    <div class="row">
+      <div class="col-md-6">
+        <h1 class="fuente_h1">Tarea</h1>
+        <div id="tv">
+          <h4 style="text-align: center;"><b>{{tarea?.nombre}}</b></h4>
+          <h4><b>Fecha:</b> &nbsp; <span>{{tarea?.fecha  |date}}</span></h4>
+          <h4><b>Estatus:</b> &nbsp; <span>{{tarea?.estatus}}</span></h4>
+          <h4><b>Asignado a:</b><span>{{tarea?.trabajadorModel.nombre_trabajador}}</span></h4>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="buttons">
+    <div class="buttons">
+      <button [routerLink]="'/worker/tareas'">Regresar</button>
+    </div>

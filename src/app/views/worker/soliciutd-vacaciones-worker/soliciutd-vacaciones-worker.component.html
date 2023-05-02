@@ -1,1 +1,77 @@
-<p>soliciutd-vacaciones-worker works!</p>
+<!--Encabezado principal-->
+<section class="intro">
+    <div class="bg-image h-100" style="background-color: transparent;">
+      <div class="mask d-flex align-items-center h-100">
+        <div class="container">
+          <br><br>
+          <!--Titulo-->
+          <h2 style="color: #000;">
+            Lista de Vacaciones
+          </h2>
+          <br>
+          <br>
+          <button style="--clr:#634A97" (click)="abrirModalQueja(crearVacaciones)"><span>Obtener Lista</span><i></i></button>
+          <br><br>
+        </div>
+      </div>
+    </div>
+  </section>
+  <ng-template #sinEstatus>
+    Sin Estatus
+  </ng-template>
+  <div class="table-wrapper">
+    <table class="fl-table">
+      <thead>
+        <tr>
+          <th scope="col">#</th>
+          <th scope="col">Fecha Creacion</th>
+          <th scope="col">Estatus</th>
+          <th scope="col">Fecha Inicio</th>
+          <th scope="col">Fecha Fin</th>
+          <th scope="col">Trabajador</th>
+          <th scope="col">Numero Trabajador</th>
+          <th scope="col">Accion</th>
+        </tr>
+      </thead>
+      <tbody class="row_cuerpo" *ngFor="let fecha of listaVacaciones">
+        <tr class="tr_font">
+          <td>{{fecha.id_vacacion}}</td>
+          <td>{{fecha.fechaCreacion}}</td>
+          <td>{{fecha.estatus_vacacion}}</td>
+          <td>{{fecha.fecha_inicio}}</td>
+          <td>{{fecha.fecha_fin}}</td>
+          <td>{{fecha.trabajadorModel.nombre_trabajador}}</td>
+          <td>{{fecha.trabajadorModel.numero_trabajador}}</td>
+          <td style="color: #000;"><a class="btn btnPrimary"
+            (click)="detalleNomina(fecha.trabajadorModel.id, fecha.id_vacacion)">Detalles</a></td>
+        </tr>
+      <tbody>
+    </table>
+  </div>
+      <!--Ventana Modal Buscar Orden-->
+<ng-template #crearVacaciones let-modal>
+  <div class="modal-header fondo-cabecera">
+    <h4 class="modal-title estiloh4">Crear Queja</h4>
+    <button class="btn close btnClose" aria-label="close" type="button" (click)="modal.dismiss()">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body fondo-modal-buscar">
+    <div class="col form_modal">
+      <input type="text" [(ngModel)]="vacacion.fecha_inicio" class="form-control" name="nombreSurtidor" placeholder="Fecha Inicio">
+      <br>
+      <input type="text" [(ngModel)]="vacacion.fecha_fin" class="form-control" name="nombreSurtidor" placeholder="Fecha Fin">
+      <br>
+
+      <p>Trabajador</p>
+      <select [(ngModel)]="idTrabajador" name="gerente"  id="gerente.id">
+        <option value="{{trabajadorObtenido.id}}">{{trabajadorObtenido.nombre_trabajador}}</option>
+      </select>
+    </div>
+    <a type="submit" class="btnBuscar" (click)="crearQuejaClick()">Crear</a>
+  </div>
+  <div class="modal-footer">
+  </div>
+</ng-template>
+<!--Cerrar Ventana Modal Buscar Orden-->
+  

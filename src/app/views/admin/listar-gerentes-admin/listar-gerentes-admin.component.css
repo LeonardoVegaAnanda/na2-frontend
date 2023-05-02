@@ -341,7 +341,7 @@
     color: red;
   }
   .fondo-modal-buscar{
-    height: 55vh;
+    height: 65vh;
     background:url(/assets/bg-pattern.png),#757DBA;
   }
   .form_modal{
@@ -364,6 +364,10 @@
   .form_modal label{
     font-size: 17px;
     font-family: 'Raleway-Regular';
+  }
+  .negro{
+    color: #000;
+    
   }
   .btnBuscar{
     background:url(/assets/bg-pattern.png),#424141;

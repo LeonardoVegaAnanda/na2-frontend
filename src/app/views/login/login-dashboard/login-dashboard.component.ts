@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { LoginNa2Service } from 'src/app/services/login/login-na2.service';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-login-dashboard',
@@ -36,8 +37,16 @@ export class LoginDashboardComponent implements OnInit{
                 this.login.setUser(user);
                 //Verificacion de Roles
                 if (this.login.getUserRoles() == "ROLE_ADMIN") {
-                  console.log("Usuario correcto");
+                  Swal.fire("Exito","Usuario Correcto","success");
                   this.router.navigate(['admin']);
+                }
+                else if(this.login.getUserRoles() == "ROLE_GERENTE"){
+                  Swal.fire("Exito","Usuario Correcto","success");
+                  this.router.navigate(['manager']);
+                }
+                else if(this.login.getUserRoles() == "ROLE_TRABAJADOR"){
+                  Swal.fire("Exito","Usuario Correcto","success");
+                  this.router.navigate(['worker']);
                 }
                 else{
                   this.login.logout();

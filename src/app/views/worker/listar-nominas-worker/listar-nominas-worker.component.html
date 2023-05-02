@@ -1,1 +1,49 @@
-<p>listar-nominas-worker works!</p>
+<!--Encabezado principal-->
+<section class="intro">
+    <div class="bg-image h-100" style="background-color: transparent;">
+      <div class="mask d-flex align-items-center h-100">
+        <div class="container">
+          <br><br>
+          <!--Titulo-->
+          <h2 style="color: #000;">
+            Lista de Nominas
+          </h2>
+          <br>
+          <br>
+          <button style="--clr:#634A97" (click)="generarPDFDate()" *ngIf="validado"><span>PDF</span><i></i></button>
+          <br><br>
+        </div>
+      </div>
+    </div>
+  </section>
+  <ng-template #sinEstatus>
+    Sin Estatus
+  </ng-template>
+  <div class="table-wrapper">
+    <table class="fl-table">
+      <thead>
+        <tr>
+          <th scope="col">#</th>
+          <th scope="col">Fecha</th>
+          <th scope="col">Nomina</th>
+          <th scope="col">ISR</th>
+          <th scope="col">Trabajador</th>
+          <th scope="col">Numero Trabajador</th>
+          <th scope="col">Accion</th>
+        </tr>
+      </thead>
+      <tbody class="row_cuerpo" *ngFor="let nomina of listaNominas">
+        <tr class="tr_font">
+          <td>{{nomina.id_nomina}}</td>
+          <td>{{nomina.fechaNomina}}</td>
+          <td>{{nomina.nomina_trabajador | currency}}</td>
+          <td>{{nomina.isr | percent}}</td>
+          <td>{{nomina.trabajadorModel.nombre_trabajador}}</td>
+          <td>{{nomina.trabajadorModel.numero_trabajador}}</td>
+          <td style="color: #000;"><a class="btn btnPrimary" (click)="detalleNomina(nomina.trabajadorModel.id, nomina.id_nomina)">Detalles</a></td>
+        </tr>
+      <tbody>
+    </table>
+  </div>
+
+  

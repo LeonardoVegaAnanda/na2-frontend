@@ -1,1 +1,47 @@
-<p>listar-tareas-worker works!</p>
+<!--Encabezado principal-->
+<section class="intro">
+    <div class="bg-image h-100" style="background-color: transparent;">
+      <div class="mask d-flex align-items-center h-100">
+        <div class="container">
+          <br><br>
+          <!--Titulo-->
+          <h2 style="color: #000;">
+            Lista de Tareas
+          </h2>
+          <br>
+          <br>
+        </div>
+      </div>
+    </div>
+  </section>
+  <ng-template #sinEstatus>
+    Sin Estatus
+  </ng-template>
+  <div class="table-wrapper">
+    <table class="fl-table">
+      <thead>
+        <tr>
+          <th scope="col">#</th>
+          <th scope="col">Nombre Tarea</th>
+          <th scope="col">Fecha</th>
+          <th scope="col">Estatus</th>
+          <th scope="col">Trabajador</th>
+          <th scope="col">Numero Trabajador</th>
+          <th scope="col">Accion</th>
+        </tr>
+      </thead>
+      <tbody class="row_cuerpo" *ngFor="let tarea of listaTareas">
+        <tr class="tr_font">
+          <td>{{tarea.id_Tarea}}</td>
+          <td>{{tarea.nombre}}</td>
+          <td>{{tarea.fecha}}</td>
+          <td>{{tarea.estatus}}</td>
+          <td>{{tarea.trabajadorModel.nombre_trabajador}}</td>
+          <td>{{tarea.trabajadorModel.numero_trabajador}}</td>
+          <td style="color: #000;"><a class="btn btnPrimary" [routerLink]="'/worker/tareas/'+ tarea.id_Tarea">Detalles</a>
+          </td>
+        </tr>
+      <tbody>
+    </table>
+  </div>
+  

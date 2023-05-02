@@ -18,7 +18,7 @@
           &nbsp; &nbsp;
           <button style="--clr:#634A97" (click)="obtenerRetardoDate()" ><span>Obtener Lista</span><i></i></button>
           &nbsp; &nbsp;
-          <button style="--clr:#946FE3" (click)=" abrirModalEvento(crearEvento)"><span>Crear Evento</span><i></i></button>
+          <button style="--clr:#946FE3" (click)=" abrirModalRetardo(crearRetardo)"><span>Crear Evento</span><i></i></button>
           <br><br>
         </div>
       </div>
@@ -53,23 +53,23 @@
     </table>
   </div>
     <!--Ventana Modal Buscar Orden-->
-<ng-template #crearEvento let-modal>
+<ng-template #crearRetardo let-modal>
   <div class="modal-header fondo-cabecera">
-    <h4 class="modal-title estiloh4">Crear Evento</h4>
+    <h4 class="modal-title estiloh4">Crear Retardo</h4>
     <button class="btn close btnClose" aria-label="close" type="button" (click)="modal.dismiss()">
       <span aria-hidden="true">&times;</span>
     </button>
   </div>
   <div class="modal-body fondo-modal-buscar">
     <div class="col form_modal">
-      <input type="number" [(ngModel)]="retardo.tiempo_Retardo" class="form-control" name="nombreSurtidor" placeholder="Titulo">
-      <input type="number" [(ngModel)]="retardo.descuento_retardo" class="form-control" name="claveSurtidor" placeholder="Tipo">
+      <input type="number" [(ngModel)]="retardo.tiempo_Retardo" class="form-control" placeholder="Tiempo">
+      <input type="number" [(ngModel)]="retardo.descuento_retardo" class="form-control"  placeholder="Descuento">
       <p>Trabajador</p>
       <select [(ngModel)]="idTrabajador" name="gerente" *ngFor="let trabajador of trabajadores" id="gerente.id">
         <option  value="{{trabajador.id}}">{{trabajador.nombre_trabajador}}</option>
       </select>
     </div>
-    <a type="submit" class="btnBuscar" (click)="crearEventoClick()">Crear</a>
+    <a type="submit" class="btnBuscar" (click)="crearRetardoClick()">Crear</a>
   </div>
   <div class="modal-footer">
   </div>

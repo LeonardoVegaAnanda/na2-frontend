@@ -20,7 +20,7 @@
         &nbsp; &nbsp;
         <button style="--clr:#634A97" (click)="generarPDFDate()" *ngIf="validado"><span>PDF</span><i></i></button>
         &nbsp; &nbsp;
-        <button style="--clr:#946FE3" (click)=" abrirModalEvento(crearEvento)"><span>Crear Nomina</span><i></i></button>
+        <button style="--clr:#946FE3" (click)=" abrirModalNomina(crearNomina)"><span>Crear Nomina</span><i></i></button>
         <br><br>
       </div>
     </div>
@@ -56,9 +56,9 @@
   </table>
 </div>
 <!--Ventana Modal Buscar Orden-->
-<ng-template #crearEvento let-modal>
+<ng-template #crearNomina let-modal>
   <div class="modal-header fondo-cabecera">
-    <h4 class="modal-title estiloh4">Crear Evento</h4>
+    <h4 class="modal-title estiloh4">Crear Nomina</h4>
     <button class="btn close btnClose" aria-label="close" type="button" (click)="modal.dismiss()">
       <span aria-hidden="true">&times;</span>
     </button>
@@ -66,11 +66,11 @@
   <div class="modal-body fondo-modal-buscar">
     <div class="col form_modal">
       <p>Trabajador</p>
-      <select [(ngModel)]="idTrabajador" name="gerente" *ngFor="let trabajador of trabajadores" id="gerente.id">
+      <select [(ngModel)]="idTrabajador" name="trabajador" *ngFor="let trabajador of trabajadores">
         <option value="{{trabajador.id}}">{{trabajador.nombre_trabajador}}</option>
       </select>
     </div>
-    <a type="submit" class="btnBuscar" (click)="crearEventoClick()">Crear</a>
+    <a type="submit" class="btnBuscar" (click)="crearNominaClick()">Crear</a>
   </div>
   <div class="modal-footer">
   </div>

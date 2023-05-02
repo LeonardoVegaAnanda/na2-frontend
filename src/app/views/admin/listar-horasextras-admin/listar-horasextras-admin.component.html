@@ -18,7 +18,7 @@
         &nbsp; &nbsp;
         <button style="--clr:#634A97" (click)="obtenerHoraExtraDate()"><span>Obtener Lista</span><i></i></button>
         &nbsp; &nbsp;
-        <button style="--clr:#946FE3" (click)=" abrirModalEvento(crearEvento)"><span>Crear Hora</span><i></i></button>
+        <button style="--clr:#946FE3" (click)=" abrirModalHora(crearHoraExtra)"><span>Crear Hora</span><i></i></button>
         <br><br>
       </div>
     </div>
@@ -53,7 +53,7 @@
   </table>
 </div>
 <!--Ventana Modal Buscar Orden-->
-<ng-template #crearEvento let-modal>
+<ng-template #crearHoraExtra let-modal>
   <div class="modal-header fondo-cabecera">
     <h4 class="modal-title estiloh4">Crear Evento</h4>
     <button class="btn close btnClose" aria-label="close" type="button" (click)="modal.dismiss()">
@@ -62,16 +62,16 @@
   </div>
   <div class="modal-body fondo-modal-buscar">
     <div class="col form_modal">
-      <input type="number" [(ngModel)]="horaNueva.costo_hora" class="form-control" name="claveSurtidor"
+      <input type="number" [(ngModel)]="horaNueva.costo_hora" class="form-control" name="costo"
         placeholder="Costo">
-      <input type="number" [(ngModel)]="horaNueva.cantidad_horas" class="form-control" name="claveSurtidor"
+      <input type="number" [(ngModel)]="horaNueva.cantidad_horas" class="form-control" name="cantidad"
         placeholder="Cantidad">
       <p>Trabajador</p>
-      <select [(ngModel)]="idTrabajador" name="gerente" *ngFor="let trabajador of trabajadores" id="gerente.id">
+      <select [(ngModel)]="idTrabajador" name="trabajador" *ngFor="let trabajador of trabajadores" >
         <option value="{{trabajador.id}}">{{trabajador.nombre_trabajador}}</option>
       </select>
     </div>
-    <a type="submit" class="btnBuscar" (click)="crearEventoClick()">Crear</a>
+    <a type="submit" class="btnBuscar" (click)="crearHoraExtraClick()">Crear</a>
   </div>
   <div class="modal-footer">
   </div>

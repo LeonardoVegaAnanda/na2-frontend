@@ -1,1 +1,17 @@
-<p>detalle-evento-worker works!</p>
+<div class="container">
+    <div class="row">
+      <div class="col-md-6">
+        <h1 class="fuente_h1">Orden</h1>
+        <div id="tv">
+          <h4><b>Titulo:</b> &nbsp; <span>{{evento?.titulo_evento}}</span></h4>
+          <h4><b>Tipo: </b>&nbsp; <span>{{evento?.tipo_evento}}</span></h4>
+          <h3 style="text-align: center;">Detalles</h3>
+          <h5 style="text-align: center;"><span>{{evento?.cuerpo_evento}}</span></h5>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="buttons">
+    <button [routerLink]="'/worker/eventos'">Regresar</button>
+  </div>
+  

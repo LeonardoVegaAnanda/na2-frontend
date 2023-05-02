@@ -1,0 +1,226 @@
+@font-face {
+    font-family: Raleway-Regular;
+    src: url(/assets/fonts/Raleway-Regular.ttf);
+  }
+  
+  @font-face {
+    font-family: Raleway-Bold;
+    src: url(/assets/fonts/Raleway-Bold.ttf);
+  }
+  
+  h1 {
+    color: #fff;
+  }
+  
+  .fontImagen {
+    color: #000;
+    font-family: 'Raleway-Bold';
+    font-size: 18px;
+    text-align: center;
+  }
+  
+  .fondo-modal-buscar {
+    height: 55vh;
+    background: url(/assets/bg-pattern.png), #757DBA;
+    color: #FF5078;
+  }
+  
+  .form_modal {
+    padding: 15px;
+    color: #fff;
+    font-family: 'Raleway-Regular';
+  }
+  
+  .form_modal input {
+    background-color: transparent;
+    border: none;
+    border-bottom: 1px solid #fff;
+    width: 200px;
+    padding: 5px;
+    color: #fff;
+  }
+  
+  .form_modal label {
+    font-size: 17px;
+    font-family: 'Raleway-Regular';
+  }
+  
+  .btnBuscar {
+    background: url(/assets/bg-pattern.png), #424141;
+    border-radius: 10px;
+    text-decoration: none;
+    height: 30px;
+    width: 150px;
+    margin: 10px;
+    color: #fff;
+    text-align: center;
+    font-family: 'Raleway-Regular';
+    font-size: 20px;
+    box-shadow: 0px 35px 50px rgba(0, 0, 0, 0.2);
+  }
+  
+  .btnBuscar:hover {
+    background-color: transparent;
+    border-radius: 20%;
+    text-decoration: none;
+    height: 30px;
+    width: 150px;
+    margin: 10px;
+    color: #634A97;
+    text-align: center;
+    font-family: 'Raleway-Regular';
+    font-size: 20px;
+    box-shadow: 0px 35px 50px rgba(0, 0, 0, 0.2);
+  }
+  
+  #tv {
+    position: relative;
+    width: 750px;
+    height: 450px;
+    background: #FBFBFA;
+    left: 15%;
+    border-radius: 0% 0% 0% 0% / 0% 0% 0% 0%;
+    color: #000;
+    box-shadow: 20px 20px rgba(0, 0, 0, .15);
+    transition: all .4s ease;
+    font-family: 'Raleway-Regular';
+    font-size: 10px;
+  }
+  
+  @media (min-width:600px) {
+    body {
+      font-size: 18px;
+    }
+  }
+  
+  .buttons {
+    display: flex;
+    width: 380px;
+    position: relative;
+    left: 15%;
+    gap: 10px;
+    --b: 5px;
+    /* the border thickness */
+    --h: 1.8em;
+    /* the height */
+  }
+  
+  .buttons button {
+    --_c: #2C3786;
+    flex: calc(1.25 + var(--_s, 0));
+    min-width: 0;
+    font-size: 20px;
+    font-weight: bold;
+    height: var(--h);
+    cursor: pointer;
+    position: relative;
+    color: var(--_c);
+    font-family: 'Raleway-Regular';
+    border: var(--b) solid var(--_c);
+    background:
+      conic-gradient(at calc(100% - 1.3*var(--b)) 0, var(--_c) 209deg, #0000 211deg) border-box;
+    clip-path: polygon(0 0, 100% 0, calc(100% - 0.577*var(--h)) 100%, 0 100%);
+    padding: 10 calc(0.288*var(--h)) 0 0;
+    margin: 0 calc(-0.288*var(--h)) 0 0;
+    box-sizing: border-box;
+    transition: flex .4s;
+    left: 40%;
+  }
+  
+  .buttons button+button {
+    --_c: #454A6E;
+    flex: calc(.75 + var(--_s, 0));
+    background:
+      conic-gradient(from -90deg at calc(1.3*var(--b)) 100%, var(--_c) 119deg, #0000 121deg) border-box;
+    clip-path: polygon(calc(0.577*var(--h)) 0, 100% 0, calc(100% - 0.407*var(--h)) 100%, 0 100%);
+    margin: 0 0 0 calc(-0.288*var(--h));
+    padding: 0 0 0 calc(0.288*var(--h));
+  }
+  
+  .buttons button+button+button {
+    --_c: #3D4CBA;
+  
+    flex: calc(.75 + var(--_s, 0));
+    background:
+      conic-gradient(from -90deg at calc(1.3*var(--b)) 100%, var(--_c) 119deg, #0000 121deg) border-box;
+    clip-path: polygon(calc(0.577*var(--h)) 0, 100% 0, 100% 100%, 0 100%);
+    margin: 0 0 0 calc(-0.288*var(--h));
+    padding: 0 0 0 calc(0.288*var(--h));
+  }
+  
+  .buttons button:focus-visible {
+    outline-offset: calc(-2*var(--b));
+    outline: calc(var(--b)/2) solid #000;
+    background: none;
+    clip-path: none;
+    margin: 10px;
+    padding: 10px;
+  }
+  
+  .buttons button:focus-visible+button {
+    background: none;
+    clip-path: none;
+    margin: 0;
+    padding: 0;
+  }
+  
+  .buttons button:has(+ button:focus-visible) {
+    background: none;
+    clip-path: none;
+    margin: 0;
+    padding: 0;
+  }
+  
+  button:hover,
+  button:active:not(:focus-visible) {
+    --_s: .75;
+    color: #FBFBFA;
+  }
+  
+  button:active {
+    box-shadow: inset 0 0 0 100vmax var(--_c);
+    color: #fff;
+  }
+  
+  
+  #tv:hover {
+    border-radius: 0% 0% 50% 50% / 0% 0% 5% 5%;
+    box-shadow: 10px 10px rgba(0, 0, 0, .25);
+  }
+  
+  
+  
+  
+  .fuente_h1 {
+    margin: 20px;
+    font-family: 'Raleway-Bold';
+    width: 150px;
+    position: relative;
+    text-align: center;
+    font-size: 30px;
+    color: #000;
+    left: 65%;
+    --g: 4px;
+    /* the gap */
+    --b: 6px;
+    /* border thickness*/
+    --c: #2C3786;
+    /* the color */
+  
+    padding: calc(var(--g) + var(--b));
+    --_c: #0000 0 25%, var(--c) 0 50%;
+    --_g1: repeating-linear-gradient(90deg, var(--_c)) repeat-x;
+    --_g2: repeating-linear-gradient(180deg, var(--_c)) repeat-y;
+    background:
+      var(--_g1) var(--_p, 25%) 0, var(--_g2) 0 var(--_p, 125%),
+      var(--_g1) var(--_p, 125%) 100%, var(--_g2) 100% var(--_p, 25%);
+    background-size: 200% var(--b), var(--b) 200%;
+    cursor: pointer;
+    transition: .3s;
+  }
+  
+  .fuente_h1:hover {
+    --_p: 75%;
+    filter: grayscale(0%);
+  }
+  

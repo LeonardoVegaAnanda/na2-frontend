@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { ApiNa2Service } from 'src/app/services/api/api-na2.service';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-detalle-admin',
@@ -26,14 +27,28 @@ export class DetalleAdminComponent {
     );
   }
   editarAdministradorClick() {
-
-    this.apiService.actualizarAdministrador(this.administrador).subscribe(
-      (data) => {
-
-      },
-      (error) => {
-      }
-    );
+    Swal.fire({
+      icon: 'question',
+      title: "Editar Administrador",
+      text: "¿Desea editar al administrador?",
+      showCancelButton: true,
+      confirmButtonColor: '#3CC3C8',
+      cancelButtonColor: '#d33',
+      confirmButtonText: 'Editar',
+      cancelButtonText: 'Cancelar'
+    }).then(
+      (e) => {
+        if (e.isConfirmed) {
+          this.apiService.actualizarAdministrador(this.administrador).subscribe(
+            (data) => {
+              Swal.fire("Exito", "Exito al editar el administrador", "success");
+            },
+            (error) => {
+              Swal.fire("Error", "Error al editar el administrador", "error");
+            }
+          );
+        }
+      });
 
   }
 
@@ -42,15 +57,30 @@ export class DetalleAdminComponent {
     this.modal.open(editarAdmin);
   }
   eliminarAdministrador(idSurtidor: any) {
-    this.apiService.eliminarAdministrador(idSurtidor).subscribe(
-      (data) => {
-
-        this.router.navigate(['/admin/admins']);
-      },
-      (error) => {
-        console.log(error);
-      }
-    );
+    Swal.fire({
+      icon: 'question',
+      title: "Eliminar Administrador",
+      text: "¿Desea eliminar al administrador?",
+      showCancelButton: true,
+      confirmButtonColor: '#3CC3C8',
+      cancelButtonColor: '#d33',
+      confirmButtonText: 'Eliminar',
+      cancelButtonText: 'Cancelar'
+    }).then(
+      (e) => {
+        if (e.isConfirmed) {
+          this.apiService.eliminarAdministrador(idSurtidor).subscribe(
+            (data) => {
+              Swal.fire("Exito","Exito al eliminar al admnistrador","success");
+              this.router.navigate(['/admin/admins']);
+            },
+            (error) => {
+              Swal.fire("Error","Error al eliminar al administrador","error");
+              console.log(error);
+            }
+          );
+        }
+      });
   }
 }
 

@@ -1,1 +1,44 @@
-<p>listar-retardos-worker works!</p>
+<!--Encabezado principal-->
+<section class="intro">
+  <div class="bg-image h-100" style="background-color: transparent;">
+    <div class="mask d-flex align-items-center h-100">
+      <div class="container">
+        <br><br>
+        <!--Titulo-->
+        <h2 style="color: #000;">
+          Lista de Retardos
+        </h2>
+        <br>
+        <br>
+      </div>
+    </div>
+  </div>
+</section>
+<ng-template #sinEstatus>
+  Sin Estatus
+</ng-template>
+<div class="table-wrapper">
+  <table class="fl-table">
+    <thead>
+      <tr>
+        <th scope="col">#</th>
+        <th scope="col">Fecha</th>
+        <th scope="col">Descuento</th>
+        <th scope="col">Trabajador</th>
+        <th scope="col">Numero Trabajador</th>
+        <th scope="col">Accion</th>
+      </tr>
+    </thead>
+    <tbody class="row_cuerpo" *ngFor="let retardo of listaRetardos">
+      <tr class="tr_font">
+        <td>{{retardo.id_retardo}}</td>
+        <td>{{retardo.fechaRetardo}}</td>
+        <td>{{retardo.descuento_retardo | currency}}</td>
+        <td>{{retardo.trabajadorModel.nombre_trabajador}}</td>
+        <td>{{retardo.trabajadorModel.numero_trabajador}}</td>
+        <td style="color: #000;"><a class="btn btnPrimary"
+            [routerLink]="'/worker/retardos/'+ retardo.id_retardo">Detalles</a></td>
+      </tr>
+    <tbody>
+  </table>
+</div>

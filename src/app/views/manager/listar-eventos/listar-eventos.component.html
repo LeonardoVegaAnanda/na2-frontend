@@ -1,1 +1,81 @@
-<p>listar-eventos works!</p>
+<!--Encabezado principal-->
+<section class="intro">
+    <div class="bg-image h-100" style="background-color: transparent;">
+      <div class="mask d-flex align-items-center h-100">
+        <div class="container">
+          <br><br>
+          <!--Titulo-->
+          <h2 style="color: #000;">
+            Lista de Eventos
+          </h2>
+          <br>
+          <br>
+          <mat-form-field class="dateEscoger">
+            <input matInput [matDatepicker]="picker" placeholder="Escoge la fecha a buscar" [(ngModel)]="fecha">
+            <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+            <mat-datepicker style="color: blueviolet;" #picker></mat-datepicker>
+          </mat-form-field>
+          &nbsp; &nbsp;
+          <button style="--clr:#634A97" (click)=" obtenerEventoDate()"><span>Obtener Lista</span><i></i></button>
+          &nbsp; &nbsp;
+          <button style="--clr:#946FE3" (click)=" abrirModalEvento(crearEvento)"><span>Crear Evento</span><i></i></button>
+          <br><br>
+        </div>
+      </div>
+    </div>
+  </section>
+  <ng-template #sinEstatus>
+    Sin Estatus
+  </ng-template>
+  <div class="table-wrapper">
+    <table class="fl-table">
+      <thead>
+        <tr>
+          <th scope="col">#</th>
+          <th scope="col">Fecha</th>
+          <th scope="col">Tipo</th>
+          <th scope="col">Titulo</th>
+          <th scope="col">Gerente</th>
+          <th scope="col">Numero Gerente</th>
+          <th scope="col">Accion</th>
+        </tr>
+      </thead>
+      <tbody class="row_cuerpo" *ngFor="let evento of listaEventos">
+        <tr class="tr_font">
+          <td>{{evento.id}}</td>
+          <td>{{evento.fechEvento}}</td>
+          <td>{{evento.tipo_evento}}</td>
+          <td>{{evento.titulo_evento}}</td>
+          <td>{{evento.gerenteModel.nombre_gerente}}</td>
+          <td>{{evento.gerenteModel.numero_gerente}}</td>
+          <td style="color: #000;"><a class="btn btnPrimary"
+              [routerLink]="'/manager/eventos/'+ evento.id">Detalles</a></td>
+        </tr>
+      <tbody>
+    </table>
+  </div>
+  <!--Ventana Modal Buscar Orden-->
+<ng-template #crearEvento let-modal>
+  <div class="modal-header fondo-cabecera">
+    <h4 class="modal-title estiloh4">Crear Evento</h4>
+    <button class="btn close btnClose" aria-label="close" type="button" (click)="modal.dismiss()">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body fondo-modal-buscar">
+    <div class="col form_modal">
+      <input type="text" [(ngModel)]="eventoNuevo.titulo_evento" class="form-control" name="nombreSurtidor" placeholder="Titulo">
+      <input type="text" [(ngModel)]="eventoNuevo.tipo_evento" class="form-control" name="claveSurtidor" placeholder="Tipo">
+      <textarea name="cuerpo" [(ngModel)]="eventoNuevo.cuerpo_evento" id="" cols="30" rows="10" placeholder="Cuerpo"></textarea>
+
+      <p>Gerente</p>
+      <select [(ngModel)]="idGerente" name="gerente"  id="gerente.id">
+        <option value="{{gerenteObtenido.id}}">{{gerenteObtenido.nombre_gerente}}</option>
+      </select>
+    </div>
+    <a type="submit" class="btnBuscar" (click)="crearEventoClick()">Crear</a>
+  </div>
+  <div class="modal-footer">
+  </div>
+</ng-template>
+<!--Cerrar Ventana Modal Buscar Orden-->

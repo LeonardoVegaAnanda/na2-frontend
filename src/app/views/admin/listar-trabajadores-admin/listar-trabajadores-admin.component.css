@@ -341,7 +341,7 @@
     color: red;
   }
   .fondo-modal-buscar{
-    height: 65vh;
+    height: 75vh;
     background:url(/assets/bg-pattern.png),#757DBA;
   }
   .form_modal{

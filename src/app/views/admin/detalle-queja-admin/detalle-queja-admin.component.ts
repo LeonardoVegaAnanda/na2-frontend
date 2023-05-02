@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { ApiNa2Service } from 'src/app/services/api/api-na2.service';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-detalle-queja-admin',
@@ -11,32 +12,47 @@ import { ApiNa2Service } from 'src/app/services/api/api-na2.service';
 export class DetalleQuejaAdminComponent {
   id = 0;
 
-  
-  queja?:any;
 
-  constructor(private router: Router, private route: ActivatedRoute, private apiService: ApiNa2Service,private modal:NgbModal) { }
+  queja?: any;
+
+  constructor(private router: Router, private route: ActivatedRoute, private apiService: ApiNa2Service, private modal: NgbModal) { }
 
   ngOnInit(): void {
-    this.id= this.route.snapshot.params['id'];
+    this.id = this.route.snapshot.params['id'];
     this.apiService.obtenerQuejaById(this.id).subscribe(
-      (data) =>{
+      (data) => {
         this.queja = data;
-      
+
       },
-      (error)=>{
+      (error) => {
         console.log(error);
-      } 
+      }
     );
   }
   editarQuejaClick() {
-
-    this.apiService.actualizarQueja(this.queja,this.queja.trabajadorModel.id).subscribe(
-      (data) => {
-        this.modal.dismissAll();
-      },
-      (error) => {
-      }
-    );
+    Swal.fire({
+      icon: 'question',
+      title: "Editar Queja",
+      text: "¿Desea editar la queja?",
+      showCancelButton: true,
+      confirmButtonColor: '#3CC3C8',
+      cancelButtonColor: '#d33',
+      confirmButtonText: 'Editar',
+      cancelButtonText: 'Cancelar'
+    }).then(
+      (e) => {
+        if (e.isConfirmed) {
+          this.apiService.actualizarQueja(this.queja, this.queja.trabajadorModel.id).subscribe(
+            (data) => {
+              Swal.fire("Exito","Exito al editar","success");
+              this.modal.dismissAll();
+            },
+            (error) => {
+              Swal.fire("Error","Error al editar","error");
+            }
+          );
+        }
+      });
 
   }
 
@@ -44,15 +60,30 @@ export class DetalleQuejaAdminComponent {
   openEditarAdministrador(editarAdmin: any) {
     this.modal.open(editarAdmin);
   }
-  eliminarQueja(idEvento: any,idTrabajador) {
-    this.apiService.eliminarQueja(idEvento,idTrabajador).subscribe(
-      (data) => {
-
-        this.router.navigate(['/admin/quejas']);
-      },
-      (error) => {
-        console.log(error);
-      }
-    );
+  eliminarQueja(idEvento: any, idTrabajador) {
+    Swal.fire({
+      icon: 'question',
+      title: "Eliminar Queja",
+      text: "¿Desea eliminar queja?",
+      showCancelButton: true,
+      confirmButtonColor: '#3CC3C8',
+      cancelButtonColor: '#d33',
+      confirmButtonText: 'Eliminar',
+      cancelButtonText: 'Cancelar'
+    }).then(
+      (e) => {
+        if (e.isConfirmed) {
+          this.apiService.eliminarQueja(idEvento, idTrabajador).subscribe(
+            (data) => {
+              Swal.fire("Exito","Exito al eliminar","success");
+              this.router.navigate(['/admin/quejas']);
+            },
+            (error) => {
+              Swal.fire("Error","Error al eliminar","error");
+              console.log(error);
+            }
+          );
+        }
+      });
   }
 }

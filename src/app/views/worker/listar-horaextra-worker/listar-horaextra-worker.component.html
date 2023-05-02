@@ -1,1 +1,41 @@
-<p>listar-horaextra-worker works!</p>
+<!--Encabezado principal-->
+<section class="intro">
+    <div class="bg-image h-100" style="background-color: transparent;">
+      <div class="mask d-flex align-items-center h-100">
+        <div class="container">
+          <br><br>
+          <!--Titulo-->
+          <h2 style="color: #000;">
+            Lista de Horas Extra
+          </h2>
+          <br>
+          <br>
+          <br><br>
+        </div>
+      </div>
+    </div>
+  </section>
+  <ng-template #sinEstatus>
+    Sin Estatus
+  </ng-template>
+  <div class="table-wrapper">
+    <table class="fl-table">
+      <thead>
+        <tr>
+          <th scope="col">#</th>
+          <th scope="col">Fecha</th>
+          <th scope="col">Cantidad</th>
+          <th scope="col">Costo</th>
+          <th scope="col">Total</th>
+        </tr>
+      </thead>
+      <tbody class="row_cuerpo" *ngFor="let hora of listaHoras">
+        <tr class="tr_font">
+          <td>{{hora.id_horaExtra}}</td>
+          <td>{{hora.fechaHoraExtra}}</td>
+          <td>{{hora.cantidad_horas}}</td>
+          <td>{{hora.costo_hora}}</td>
+          <td>{{hora.aumento_total}}</td>
+      <tbody>
+    </table>
+  </div>

@@ -1,0 +1,91 @@
+@media (min-width: 991.98px) {
+    main {
+      padding-left: 240px;
+    }
+  }
+  
+  @font-face{
+    font-family: Raleway-Regular;
+    src: url(/assets/fonts/Raleway-Regular.ttf);
+  }
+  
+  @font-face{
+    font-family: Raleway-Bold;
+    src: url(/assets/fonts/Raleway-Bold.ttf);
+  }
+    
+  
+  .fuenteH2{
+    font-family: 'Raleway-Bold','arial';
+    font-size: 25px;
+  }
+  
+  .color-sidebar{
+    background:url(/assets/bg-pattern.png),#454A6E;
+    color: #97A3F0;
+  }
+  .img-sidebar{
+    width: 30px;
+    color: #fff;
+  }
+  
+  .color-tr{
+    background-color: transparent;
+    color: #fff;
+    border: none;
+  }
+  /* Sidebar */
+  .sidebar {
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    padding: 0px 0 0; /* Height of navbar */
+    box-shadow: 0 2px 5px 0 rgb(0 0 0 / 5%), 0 2px 10px 0 rgb(0 0 0 / 5%);
+    width: 240px;
+    z-index: 600;
+    height: 100%;
+  }
+  
+  
+  .color-listado {
+    background-color: transparent;
+    border: none;
+    color: #fff;
+    font-family: 'Raleway-Regular';
+    font-family: 20px;
+  }
+  .color-listado:hover{
+    color: #97A3F0;
+    border-bottom: 0.5px transparent solid;
+    font-family: 'Raleway-Regular';
+    font-family: 20px;
+  }
+  .color-salir {
+    background-color: #fff;
+    color: #000;
+  }
+  .color-salir:hover{
+    color: #FFC300;
+    border:none
+  }
+  
+  @media (max-width: 991.98px) {
+    .sidebar {
+      width: 100%;
+    }
+  }
+  .sidebar .active {
+    border-radius: 5px;
+    box-shadow: 0 2px 5px 0 rgb(0 0 0 / 16%), 0 2px 10px 0 rgb(0 0 0 / 12%);
+  }
+  
+  .sidebar-sticky {
+    position: relative;
+    top: 0;
+    height: calc(100vh - 48px);
+    padding-top: 0.5rem;
+    overflow-x: hidden;
+    overflow-y: auto; /* Scrollable contents if viewport is shorter than content. */
+  }
+  

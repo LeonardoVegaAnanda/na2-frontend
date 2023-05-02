@@ -69,8 +69,8 @@
       <textarea name="cuerpo" [(ngModel)]="eventoNuevo.cuerpo_evento" id="" cols="30" rows="10" placeholder="Cuerpo"></textarea>
 
       <p>Gerente</p>
-      <select [(ngModel)]="idGerente" name="gerente" *ngFor="let gerente of gerentes" id="gerente.id">
-        <option  value="{{gerente.id}}">{{gerente.nombre_gerente}}</option>
+      <select [(ngModel)]="idGerente" name="gerente" id="gerente.id">
+        <option *ngFor="let gerente of gerentes" value="{{gerente.id}}">{{gerente.nombre_gerente}}</option>
       </select>
     </div>
     <a type="submit" class="btnBuscar" (click)="crearEventoClick()">Crear</a>

@@ -1,1 +1,81 @@
-<p>listar-trabajadores-manager works!</p>
+<!--Ventana Modal Buscar Orden-->
+<ng-template #crearGerente let-modal>
+    <div class="modal-header fondo-cabecera">
+      <h4 class="modal-title estiloh4">Crear Trabajador</h4>
+      <button class="btn close btnClose" aria-label="close" type="button" (click)="modal.dismiss()">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+    <div class="modal-body fondo-modal-buscar">
+      <div class="col form_modal">
+        <input type="text" [(ngModel)]="trabajador.nombre_trabajador" class="form-control" name="nombreSurtidor" placeholder="Nombre">
+        <input type="number" [(ngModel)]="trabajador.numero_trabajador" class="form-control" name="claveSurtidor" placeholder="Numero Trabajador">
+        <input type="text" [(ngModel)]="trabajador.apellidoP_trabajador" class="form-control" name="claveSurtidor" placeholder="Apellido Paterno">
+        <input type="text" [(ngModel)]="trabajador.apellidoM_trabajador" class="form-control" name="claveSurtidor" placeholder="Apellido Materno">
+        <input type="number" [(ngModel)]="trabajador.nss" class="form-control" name="claveSurtidor" placeholder="NSS">
+        <input type="text" [(ngModel)]="trabajador.rfc" class="form-control" name="claveSurtidor" placeholder="RFC">
+        <input type="text" [(ngModel)]="trabajador.curp" class="form-control" name="claveSurtidor" placeholder="CURP">
+        <input type="number" [(ngModel)]="trabajador.sueldo" class="form-control" name="claveSurtidor" placeholder="Sueldo">
+        <input type="text" [(ngModel)]="trabajador.estatus" class="form-control" name="claveSurtidor" placeholder="Estatus">
+        <input type="tel" [(ngModel)]="trabajador.celular" class="form-control" name="claveSurtidor" placeholder="Celular">
+        <input type="email" [(ngModel)]="trabajador.correo_electronico" class="form-control" name="claveSurtidor" placeholder="Correo Electronico">
+        <input type="text" [(ngModel)]="trabajador.puesto" class="form-control" name="claveSurtidor" placeholder="Puesto">
+        <div class="col">
+          <label for="area">Usuario</label>
+          <select style="background-color: transparent;" class="form-control" name="area" id="area"
+            [(ngModel)]="idUsuario" required="true">
+            <option *ngFor="let user of users" value="{{user.idUsuario}}">{{user.username}}</option>
+          </select>
+        </div>
+      </div>
+    </div>
+    <div class="modal-footer">
+      <a type="submit" class="btnBuscar" (click)="crearTrabajadorClick()" >Crear</a>
+    </div>
+</ng-template>
+<!--Cerrar Ventana Modal Buscar Orden-->
+
+<!--Encabezado principal-->
+<section class="intro">
+  <div class="bg-image h-100" style="background-color: transparent;">
+    <div class="mask d-flex align-items-center h-100">
+      <div class="container">
+        <br><br>
+        <!--Titulo-->
+        <h2 style="color: #000;">
+          Lista de Trabajadores
+        </h2>
+        <br>
+        <br>
+        <button style="--clr:#2C3786" (click)="openCrearTrabajador(crearGerente)"><span>Crear
+           Trabajador</span><i></i></button> &nbsp;
+      </div>
+    </div>
+  </div>
+</section>
+<div class="table-wrapper">
+  <table class="fl-table">
+    <thead>
+      <tr>
+        <th scope="col">#</th>
+        <th scope="col">Nombre</th>
+        <th scope="col">Estatus</th>
+        <th scope="col">Correo</th>
+        <th scope="col">Celular</th>
+        <th scope="col">Puesto</th> 
+        <th scope="col">Accion</th>
+      </tr>
+    </thead>
+    <tbody style="background-color: transparent;">
+      <tr *ngFor="let trabajador of trabajadores">
+        <td>{{trabajador.numero_trabajador}}</td>
+        <td>{{trabajador.nombre_trabajador}}</td>
+        <td>{{trabajador.estatus}}</td>
+        <td>{{trabajador.correo_electronico}}</td>
+        <td>{{trabajador.celular}}</td>
+        <td>{{trabajador.puesto}}</td>
+        <td><a class="btn" [routerLink]="'/manager/trabajadores/'+trabajador.id">Detalles</a></td>
+      </tr>
+    </tbody>
+  </table>
+</div>

@@ -2,6 +2,7 @@ import { DatePipe } from '@angular/common';
 import { Component } from '@angular/core';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { ApiNa2Service } from 'src/app/services/api/api-na2.service';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-listar-horasextras-admin',
@@ -10,15 +11,16 @@ import { ApiNa2Service } from 'src/app/services/api/api-na2.service';
 })
 export class ListarHorasextrasAdminComponent {
   fecha = new Date();
-  horaNueva={
+  horaNueva = {
     fechaHoraExtra: Date(),
-    cantidad_horas:0,
-    costo_hora:0.0,
+    cantidad_horas: 0,
+    costo_hora: 0.0,
   }
-  idTrabajador:any;
-  trabajadores=[];
+  idTrabajador: any;
+  trabajadores = [];
   listaHoras: any = [];
-  constructor(private datepipe: DatePipe, private apiService: ApiNa2Service,private modal:NgbModal) { }
+
+  constructor(private datepipe: DatePipe, private apiService: ApiNa2Service, private modal: NgbModal) { }
   ngOnInit(): void {
     this.apiService.listarHoras().subscribe(
       (data) => {
@@ -42,9 +44,9 @@ export class ListarHorasextrasAdminComponent {
       }
     );
   }
-  abrirModalEvento(crearHora) {
+  abrirModalHora(crearHora) {
     this.apiService.listarTrabajadores().subscribe(
-      (data:any) => {
+      (data: any) => {
         this.trabajadores = data.contenido;
         console.log(this.trabajadores);
       }
@@ -52,19 +54,35 @@ export class ListarHorasextrasAdminComponent {
     this.modal.open(crearHora);
   }
 
-  crearEventoClick() {
-    let latest_date = this.datepipe.transform(this.horaNueva.fechaHoraExtra, 'yyyy-MM-dd');
-    this.horaNueva.fechaHoraExtra = latest_date;
-     console.log(this.idTrabajador, this.horaNueva.fechaHoraExtra);
-    this.apiService.crearHoraExtra(this.horaNueva, this.idTrabajador).subscribe(
-      (data) => {
-        this.modal.dismissAll();
-        console.log(data)
-        this.ngOnInit();
-      },
-      (error) => {
-        console.log(error);
-      }
-    );
+  crearHoraExtraClick() {
+    Swal.fire({
+      icon: 'question',
+      title: "Crear Hora",
+      text: "¿Desea generar la hora extra?",
+      showCancelButton: true,
+      confirmButtonColor: '#3CC3C8',
+      cancelButtonColor: '#d33',
+      confirmButtonText: 'Generar',
+      cancelButtonText: 'Cancelar'
+    }).then(
+      (e) => {
+        if (e.isConfirmed) {
+          let latest_date = this.datepipe.transform(this.horaNueva.fechaHoraExtra, 'yyyy-MM-dd');
+          this.horaNueva.fechaHoraExtra = latest_date;
+          console.log(this.idTrabajador, this.horaNueva.fechaHoraExtra);
+          this.apiService.crearHoraExtra(this.horaNueva, this.idTrabajador).subscribe(
+            (data) => {
+              Swal.fire("Exito","Exito al crear la hora","success")
+              this.modal.dismissAll();
+              console.log(data)
+              this.ngOnInit();
+            },
+            (error) => {
+              Swal.fire("Error","Error al crear la hora","error")
+              console.log(error);
+            }
+          );
+        }
+      });
   }
 }

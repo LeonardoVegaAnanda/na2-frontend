@@ -18,7 +18,7 @@
           &nbsp; &nbsp;
           <button style="--clr:#634A97" (click)="obtenerQuejasDate()"><span>Obtener Lista</span><i></i></button>
           &nbsp; &nbsp;
-          <button style="--clr:#946FE3" (click)=" abrirModalEvento(crearEvento)"><span>Crear Queja</span><i></i></button>
+          <button style="--clr:#946FE3" (click)=" abrirModalQueja(crearQueja)"><span>Crear Queja</span><i></i></button>
           <br><br>
         </div>
       </div>
@@ -55,9 +55,9 @@
     </table>
   </div>
     <!--Ventana Modal Buscar Orden-->
-<ng-template #crearEvento let-modal>
+<ng-template #crearQueja let-modal>
   <div class="modal-header fondo-cabecera">
-    <h4 class="modal-title estiloh4">Crear Evento</h4>
+    <h4 class="modal-title estiloh4">Crear Queja</h4>
     <button class="btn close btnClose" aria-label="close" type="button" (click)="modal.dismiss()">
       <span aria-hidden="true">&times;</span>
     </button>

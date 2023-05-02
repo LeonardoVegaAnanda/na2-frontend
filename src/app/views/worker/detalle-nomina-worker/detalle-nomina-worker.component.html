@@ -1,1 +1,17 @@
-<p>detalle-nomina-worker works!</p>
+<div class="container">
+    <div class="row">
+      <div class="col-md-6">
+        <h1 class="fuente_h1">Detalle Nomina</h1>
+        <div id="tv">
+          <h4>Fecha: <span>{{nomina?.fechaNomina}}</span></h4>
+          <h4>ISR: <span>{{nomina?.isr}}</span></h4>
+          <h4>Descuento Retardo: <span>{{nomina?.descuento_retardo}}</span></h4>
+          <h3>Total: <span><b>{{nomina?.nomina_trabajador | currency}}</b></span></h3>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="buttons">
+    <button (click)="pdfNomina(nomina?.id_nomina,nomina?.trabajadorModel.id)">PDF</button>
+    <button [routerLink]="'/worker/eventos'">Regresar</button>
+  </div>

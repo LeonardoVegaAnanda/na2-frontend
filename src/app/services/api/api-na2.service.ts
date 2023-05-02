@@ -37,17 +37,20 @@ export class ApiNa2Service {
   public crearAdministrador(admin: any) {
     return this.http.post(this.baseAnd + "/admin/", admin);
   }
-  public crearGerente(gerente:any){
-    return this.http.post(this.baseAnd+"/gerentes",gerente);
+  public crearGerente(gerente:any,id:any){
+    return this.http.post(this.baseAnd+"/gerentes?idUsuario="+id,gerente);
   }
   public crearHoraExtra(hora:any, idTrabajador:any){
    return this.http.post(this.baseAnd+"/trabajadores/"+idTrabajador+"/horaExtra/",hora);
   }
+  public crearIncidencia(incidencia:any, id:any){
+    return this.http.post(this.baseAnd+"/"+id,incidencia);
+  }
   public crearQueja(queja:any,idTrabajador:any){
     return this.http.post(this.baseAnd+"/trabajadores/"+idTrabajador+"/quejas/",queja);
   }
-  public crearTrabajador(trabajador:any){
-    return this.http.post(this.baseAnd+"/trabajadores",trabajador);
+  public crearTrabajador(trabajador:any,id:any){
+    return this.http.post(this.baseAnd+"/trabajadores?idUsuario="+id,trabajador);
   }
   public crearEvento(evento:any, id:any){
     return this.http.post(this.baseAnd+"/gerentes/"+id+"/eventos/",evento);
@@ -63,6 +66,9 @@ export class ApiNa2Service {
   }
   public crearUsuario(usuario:any){
     return this.http.post(this.baseAnd+"/auth/usuario?rol=" + usuario.area, usuario);
+  }
+  public crearVacacion(vacacion:any,id:any){
+    return this.http.post(this.baseAnd+"/trabajadores/"+id+"/vacaciones/",vacacion);
   }
   public descargarIncidencias(id:any,idTrabajador:any){
     return this.http.get(this.baseAnd+"/na2/trabajador/"+idTrabajador+"/incidencia/pdf/"+id,{responseType:'blob'})
@@ -100,6 +106,9 @@ export class ApiNa2Service {
   public listarEventos(){
     return this.http.get(this.baseAnd+"/eventos");
   }
+  public listarEventosGerente(id:any){
+    return this.http.get(this.baseAnd+"/gerentes/"+id+"/eventos/");
+  }
   public listarEventosDia(fecha:any){
     return this.http.get(this.baseAnd+"/eventos/fecha?fecha="+fecha);
   }
@@ -108,6 +117,9 @@ export class ApiNa2Service {
   }
   public listarHoras(){
     return this.http.get(this.baseAnd+"/horaExtra/");
+  }
+  public listarHorasExtraTrabajador(id:any){
+    return this.http.get(this.baseAnd+"/trabajadores/"+id+"/horaExtra/");
   }
   public listarHorasExtrasDia(fecha:any){
     return this.http.get(this.baseAnd+"/horaExtra/fecha?fecha="+fecha);
@@ -118,11 +130,17 @@ export class ApiNa2Service {
   public listarNominas(){
     return this.http.get(this.baseAnd+"/nominas/");
   }
+  public listarNominasTrabajador(id:any){
+    return this.http.get(this.baseAnd+"/nominas/trabajadores/"+id);
+  }
   public listarNominasDia(fecha:any){
     return this.http.get(this.baseAnd+"/nomina/fecha?fecha="+fecha);
   }
   public listarQuejas(){
     return this.http.get(this.baseAnd+"/quejas/");
+  }
+  public listarQuejasTrabajadores(id:any){
+    return this.http.get(this.baseAnd+"/trabajadores/"+id+"/quejas/");
   }
   public listarQuejasFecha(fecha:any){
     return this.http.get(this.baseAnd+"/quejas/fecha?fecha="+fecha);
@@ -133,11 +151,17 @@ export class ApiNa2Service {
   public listarRetardosDia(fecha:any){
     return this.http.get(this.baseAnd+"/retardos/fecha?fecha="+fecha);
   }
+  public listarRetardosTrabajador(id:any){
+    return this.http.get(this.baseAnd+"/trabajadores/"+id+"/retardos/");
+  }
   public listarTareas(){
     return this.http.get(this.baseAnd+"/tareas/")
   }
   public listarTareasDia(fecha:any){
     return this.http.get(this.baseAnd+"/tareas/fecha?fecha="+fecha);
+  }
+  public listarTareasTrabajadores(id:any){
+    return this.http.get(this.baseAnd+"/trabajadores/"+id+"/tareas/");
   }
   public listarTrabajadores(){
     return this.http.get(this.baseAnd+"/trabajadores")
@@ -147,6 +171,9 @@ export class ApiNa2Service {
   }
   public listarVacacionesFecha(fecha:any){
     return this.http.get(this.baseAnd+"/vacacion/fecha?fecha="+fecha);
+  }
+  public listarVacacionesTrabajadores(id:any){
+    return this.http.get(this.baseAnd+"/trabajadores/"+id+"/vacaciones/")
   }
   public listaUsuarios(){
     return this.http.get(this.baseAnd+"/auth/usuarios");
@@ -159,6 +186,9 @@ export class ApiNa2Service {
   }
   public obtenerGerenteById(id:any){
     return this.http.get(this.baseAnd+"/gerentes/"+id);
+  }
+  public obtenerGerenteByIdUsuario(id:any){
+    return this.http.get(this.baseAnd+"/gerentes/idUsuario/"+id);
   }
   public obtenerNominaById(id:any,idTrabajador:any){
     return this.http.get(this.baseAnd+"/trabajadores/"+idTrabajador+"/nominas/"+id)
@@ -177,6 +207,9 @@ export class ApiNa2Service {
   }
   public obtenerTrabajadorById(id:any){
     return this.http.get(this.baseAnd+"/trabajadores/"+id);
+  }
+  public obtenerTrabajadorByIdUsuario(id:any){
+    return this.http.get(this.baseAnd+"/trabajadores/idUsuario/"+id);
   }
   public obtenerVacacionById(id:any,id_trabajador:any){
     return this.http.get(this.baseAnd+"/trabajadores/"+id_trabajador+"/vacaciones/"+id);
